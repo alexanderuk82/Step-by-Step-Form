@@ -4,20 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	const steps = Array.from(document.getElementsByClassName("step"));
 	let currentStep = 0;
 
-	function updateProgressBar(step) {
-		const progressBarFill = document.querySelector(".progress-bar-fill");
-		let percentage;
-
-		if (step === "thankYou") {
-			percentage = 100; // Explicitly set to 100% for the thank you step
-		} else {
-			// Calculate percentage based on the current step
-			const totalSteps = steps.length + 1; // Include thank you step in total
-			percentage = ((currentStep + 1) / totalSteps) * 100;
-		}
-
-		progressBarFill.style.width = percentage + "%";
-	}
+	// Event listener for input fields Validation
 
 	function validateInput(input) {
 		let errorDiv;
@@ -56,6 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		return isValid;
 	}
 
+	// Event listener for input fields
+
 	function showStep(step) {
 		steps.forEach((s, index) => {
 			s.classList.toggle("hidden", index !== step);
@@ -80,7 +69,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		updateProgressBar();
 	}
 
-	window.nextStep = function () {
+
+	// Window next step function
+
+	window.nextStep = async function () {
 		const currentInputs = steps[currentStep].querySelectorAll(
 			"input[required], select[required], radio[required]"
 		);
@@ -94,50 +86,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		// If all inputs are valid, proceed to the next step
 		if (allValid) {
-			animateToNextStep();
-			showStep(currentStep);
+			await animateToNextStep();
+
+			// Update progress bar after moving to the next step
+			updateProgressBar();
 		}
 	};
 
 	// Event animation slide out
 
 	function animateToNextStep() {
-		const currentStepElement = steps[currentStep];
-		currentStepElement.classList.add("slide-out");
+		return new Promise((resolve) => {
+			const currentStepElement = steps[currentStep];
+			currentStepElement.classList.add("slide-out");
 
-		setTimeout(() => {
-			currentStepElement.classList.remove("slide-out");
-			currentStep = Math.min(currentStep + 1, steps.length - 1);
-			showStep(currentStep);
-		}, 500);
+			setTimeout(() => {
+				currentStepElement.classList.remove("slide-out");
+				currentStep = Math.min(currentStep + 1, steps.length - 1);
+				showStep(currentStep);
+				resolve();
+			}, 500);
+		});
 	}
 
-	window.previousStep = function () {
-		currentStep = Math.max(currentStep - 1, 0);
-		showStep(currentStep);
-	};
+	// Window previous step function
 
 	window.previousStep = function () {
 		currentStep = Math.max(currentStep - 1, 0);
 		showStep(currentStep);
 	};
+
+	// Progress Bar Function
+
+	function updateProgressBar() {
+		const progressBarFill = document.querySelector(".progress-bar-fill");
+		// Calculate percentage based on the current step
+		const totalSteps = steps.length; // Total number of steps without including the thank you step
+		let percentage = (currentStep / (totalSteps - 1)) * 100;
+		progressBarFill.style.width = percentage + "%";
+	}
+
+	// Thank You Step Function
 
 	function showThankYouStep() {
 		// Hide all steps
 		steps.forEach((step) => {
 			step.classList.add("hidden");
 		});
+		// Explicitly set the progress bar to 100%
+		const progressBarFill = document.querySelector(".progress-bar-fill");
+		progressBarFill.style.width = "100%";
 
 		// Show the thank you message
 		const thankYouStep = document.getElementById("thankYouStep");
-		thankYouStep.classList.remove("hidden");
-		document.getElementById(
-			"thankYouMessage"
-		).innerHTML = `It was great assisting you today <strong>${form.firstName.value}</strong>. Our partners are now analysing your details and matching you with some affordable life insurance options.`;
+		const thankYouMessage = document.getElementById("thankYouMessage");
 
-		// Update the progress bar
-		updateProgressBar("thankYou");
+		if (thankYouStep && thankYouMessage) {
+			thankYouStep.classList.remove("hidden");
+			thankYouMessage.innerHTML = `It was great assisting you today <strong>${form.firstName.value}</strong>. Our partners are now analysing your details and matching you with some affordable life insurance options.`;
+		} else {
+			console.error("Thank You Step or Message elements not found.");
+		}
 	}
+
+	// Form Submit Function
 
 	form.addEventListener("submit", function (event) {
 		event.preventDefault();

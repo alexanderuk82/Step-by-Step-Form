@@ -502,5 +502,5 @@ strong {
 }
 
 .slide-out {
-	animation: slideOut 500ms forwards;
+	animation: slideOut 500ms ease-in;
 }
