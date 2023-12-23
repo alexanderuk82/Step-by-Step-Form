@@ -1,0 +1,506 @@
+:root {
+	/* Colours styles */
+
+	--black: #3a3a3a;
+	--orange: #df7e25;
+	--blue: #0c70c1;
+	--red: #df3025;
+	--borderColor: #e3e3e3;
+	--progressBar: #f2f2f2;
+	--progressBarFill: #1fc392;
+
+	--lightGray: #838383;
+
+	/* Font sizes for headings and body - Desktop sizes */
+	--heading-1: 4rem;
+	--heading-2: 3.06rem;
+	--heading-3: 2.5rem;
+	--heading-4: 1.25rem;
+	--body-font: 1rem;
+
+	/* Font family */
+	--font-primary: "Lato", sans-serif;
+
+	/* Font weights */
+	--font-weight-light: 300;
+	--font-weight-regular: 400;
+	--font-weight-semibold: 500;
+	--font-weight-bold: 700;
+
+	/* Line height */
+	--line-height-normal: 1.6;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* ================================================== */
+
+/*  Style definition for each heading and body text */
+
+/* ================================================== */
+
+h1 {
+	font-size: clamp(2.5rem, 4vw + 1rem, var(--heading-1));
+	font-weight: var(--font-weight-bold);
+	line-height: var(--line-height-normal);
+}
+
+h2 {
+	font-size: clamp(1.875rem, 3vw + 1rem, var(--heading-2));
+	font-weight: var(--font-weight-light);
+	line-height: var(--line-height-normal);
+	text-align: center;
+}
+
+h3 {
+	font-size: clamp(1.563rem, 2.5vw + 1rem, var(--heading-3));
+	font-weight: var(--font-weight-bold);
+	line-height: var(--line-height-normal);
+}
+
+h4 {
+	font-size: clamp(0.775rem, 1.25vw + 1rem, var(--heading-4));
+	font-weight: var(--font-weight-semibold);
+	line-height: var(--line-height-normal);
+}
+
+body {
+	font-family: var(--font-primary);
+	font-size: var(--body-font);
+	font-weight: var(--font-weight-regular);
+	line-height: var(--line-height-normal);
+	color: var(--black);
+}
+
+/* ================================================== */
+
+/*  Layout definiton responsive*/
+
+/* ================================================== */
+
+.container {
+	width: 100%;
+	background-color: var(--tertiary-base);
+}
+
+.wrapper {
+	padding: 0 1.5rem; /* Equivalent to 24px if 1rem = 16px */
+	margin: auto; /* This centers the wrappper */
+	max-width: 80rem; /* 1440px / 16px per rem */
+	background-color: var(--primary-base);
+}
+
+/* Tablet styles */
+@media (min-width: 48rem) {
+	/* 768px / 16px per rem */
+	.wrapper {
+		padding: 0 1.875rem; /* 30px / 16px per rem */
+	}
+}
+
+/* Desktop styles */
+@media (min-width: 64rem) {
+	/* 1024px / 16px per rem */
+	.wrapper {
+		padding: 0 2.5rem; /* 40px / 16px per rem */
+	}
+}
+
+/* Large Desktop styles */
+@media (min-width: 90rem) {
+	/* 1440px / 16px per rem */
+	.wrapper {
+		padding: 0 3.75rem; /* 60px / 16px per rem */
+	}
+}
+
+/* ================================================== */
+
+/*  Top Bar */
+
+/* ================================================== */
+
+.logo {
+	width: 12rem;
+}
+
+.topBar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.4rem 0rem 1.8rem 0rem;
+}
+
+.emailLink {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: var(--orange);
+	font-weight: var(--font-weight-bold);
+}
+
+.desktop {
+	display: none;
+
+	/* Mobile Large screen styles */
+	@media (min-width: 38rem) {
+		display: block;
+	}
+}
+
+.mobile {
+	/* Mobile Large screen styles */
+	@media (min-width: 38rem) {
+		display: none;
+	}
+}
+.mobile > img {
+	margin-right: 0.3rem;
+}
+
+/* ================================================== */
+
+/*  Styles for form */
+
+/* ================================================== */
+
+#stepForm {
+	display: flex;
+	justify-content: center;
+	align-items: start;
+	margin-top: 5rem;
+}
+
+.hidden {
+	display: none;
+}
+
+strong {
+	font-weight: var(--font-weight-regular);
+}
+
+/*==============
+    INPUT STYLES
+=================*/
+
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 5rem;
+}
+
+.options {
+	/* mobile landscape styles */
+	@media (min-width: 30rem) {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		margin-top: 0rem;
+	}
+}
+
+.option {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1.5rem;
+	/* Tablet styles */
+	@media (min-width: 30px) {
+		margin-right: 1.5rem;
+	}
+}
+
+.option > label {
+	margin-bottom: 0.3rem;
+	font-size: 0.875rem;
+	font-weight: var(--font-weight-bold);
+	text-transform: uppercase;
+	font-family: inherit;
+}
+
+.option > .input {
+	padding: 1rem 2rem;
+	border-radius: 0.1875rem;
+	border: 1px solid var(--borderColor);
+	font-size: inherit;
+}
+
+.option > .input:focus {
+	outline: none;
+	border: 1px solid var(--blue);
+}
+
+.option > .input:valid {
+	border: 2px solid var(--blue); /* Increased specificity */
+}
+
+.option > .input.input-error {
+	border: 1px solid red; /* Increased specificity */
+}
+
+.option > .input::placeholder {
+	color: #b3b3b3;
+	font-size: 0.875rem;
+	font-weight: var(--font-weight-regular);
+}
+
+.error-message {
+	color: red;
+	font-size: 0.8em;
+	display: none; /* Hidden by default */
+}
+
+/* ===================
+    BUTTON STYLES
+=====================*/
+.buttons {
+	display: flex;
+	flex-direction: column;
+	margin-top: 1rem;
+}
+
+.btnMain {
+	border: none;
+	padding: 1rem 4rem;
+	border-radius: 0.1875rem;
+	background-color: var(--orange);
+	font-size: inherit;
+	color: #fff;
+	font-weight: var(--font-weight-semibold);
+	cursor: pointer;
+	transition: opacity 0.3s ease-in-out;
+	margin: 1rem auto;
+	text-transform: capitalize;
+	width: 13.5rem;
+}
+
+.btnMain:hover {
+	opacity: 0.8;
+}
+
+.btnBack {
+	background-color: transparent;
+	color: var(--lightGray);
+	font-size: 0.875rem;
+	font-weight: var(--font-weight-semibold);
+	text-align: center;
+	border: none;
+	cursor: pointer;
+	margin-top: 1rem;
+}
+
+.btnBack:focus {
+	outline: none;
+}
+
+.terms {
+	display: flex;
+	align-items: center;
+}
+.terms > label {
+	margin-left: 0.5rem;
+}
+
+#myquote {
+	text-decoration: none;
+	color: var(--blue);
+	font-weight: var(--font-weight-semibold);
+}
+
+/* ===================
+    RADIO BUTTON STYLES
+======================*/
+
+/* Hide the default radio button */
+.inputRadio {
+	display: none;
+}
+
+.radio > .labelRadio {
+	text-transform: initial;
+	font-size: 1rem;
+	line-height: 120%;
+	width: 9rem;
+	height: 9rem;
+}
+
+/* Style the label as the pseudo-radio button */
+.labelRadio {
+	display: flex !important;
+	flex-direction: column !important;
+	cursor: pointer;
+	align-items: center;
+	gap: 10px;
+	color: var(--borderColor);
+	border: 1px solid var(--borderColor);
+	padding: 1rem 1.4rem;
+	border-radius: 0.34rem;
+}
+
+.inputRadio + .labelRadio svg path {
+	fill: lightgray; /* Default color for SVG icon */
+}
+
+/* Change the label text color and SVG icon color when the radio button is checked */
+.inputRadio:checked + .labelRadio {
+	color: var(--blue);
+	border: 1px solid var(--blue);
+}
+
+.inputRadio:checked + .labelRadio svg path {
+	fill: var(--blue); /* Active color for SVG icon */
+}
+
+/* =====================
+
+    PROGRESS BAR STYLES 
+======================== */
+.progress-bar {
+	position: relative;
+	height: 0.625rem;
+	background-color: var(--progressBar);
+}
+.progress-bar-fill {
+	height: 100%;
+	background-color: var(--progressBarFill);
+	width: 0%;
+} /* This file is intentionally left blank. */
+
+.avatar {
+	width: 4.25rem;
+	height: 4.25rem;
+	margin: -2rem auto;
+	/* Tablet styles */
+	@media (min-width: 48rem) {
+		margin: -3rem auto;
+	}
+}
+.avatar > img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+.avatar {
+	/* Tablet styles */
+	@media (min-width: 48rem) {
+		width: 5.25rem;
+		height: 5.25rem;
+	}
+}
+
+/* ===================
+    EXTRAS CLASSESS
+=====================*/
+
+.dob {
+	margin-left: 1rem;
+}
+/* Tablet styles */
+@media (min-width: 48rem) {
+	.dob {
+		margin-left: 0rem;
+	}
+}
+
+.subheading {
+	text-align: center;
+	margin-top: 1rem;
+}
+.submit {
+	background-color: var(--progressBarFill) !important;
+	width: max-content;
+	text-align: center;
+	padding: 1.5rem 3rem;
+}
+
+.secure {
+	display: flex;
+	align-items: center;
+	margin-top: 2rem;
+}
+
+.secure > img {
+	margin-right: 0.5rem;
+}
+
+#policy {
+	margin-top: 2.5rem;
+	text-align: center;
+}
+
+/* Tablet styles */
+@media (min-width: 48rem) {
+	#policy {
+		padding-inline: 4rem;
+	}
+}
+
+.policy > a {
+	color: var(--blue);
+	font-weight: var(--font-weight-semibold);
+}
+
+.thanks {
+	text-align: center;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 5rem;
+	text-align: center;
+}
+
+.thanks > img {
+	margin: auto;
+}
+/* ================================================== */
+
+/*  Styles for footer */
+
+/* ================================================== */
+
+.footer {
+	padding: 0.3rem 0rem;
+	border-top: 1px solid var(--borderColor);
+	margin-top: 12rem;
+}
+
+@media (min-width: 34rem) and (max-width: 65rem) {
+	.footer {
+		margin-top: 19rem;
+	}
+}
+
+.footerTxt p {
+	margin-bottom: 2rem;
+	font-weight: var(--font-weight-light);
+}
+.copyright {
+	font-size: 0.875rem;
+	font-weight: var(--font-weight-semibold);
+	line-height: 160%; /* 1.4rem */
+	font-size: 0.88rem;
+	color: var(--black);
+}
+
+/* Keyframes animation */
+
+@keyframes slideOut {
+	from {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	to {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+}
+
+.slide-out {
+	animation: slideOut 500ms forwards;
+}
