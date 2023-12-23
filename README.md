@@ -1,6 +1,4 @@
-# My Website
-
-![Cover Image](formStep.jpg)
+# STep-by-step form
 
 Welcome to my website! This project is a demonstration of a simple, responsive website built using pure HTML, CSS, and JavaScript. The design is clean and intuitive, making it easy for users to navigate.
 
@@ -13,6 +11,8 @@ This website is a showcase of my skills in front-end web development. It's built
 - **HTML**: The structure of the website is defined using simple, semantic HTML.
 - **CSS**: The website's styles, including its responsive design, are implemented in CSS. The design uses the Lato font from Google Fonts for a modern, readable appearance.
 - **JavaScript**: All of the website's interactivity is powered by JavaScript. This includes form validation, navigation, and more.
+
+![Cover Image](formStep.jpg)
 
 ## Project Structure
 
