@@ -13,6 +13,7 @@ This website is a showcase of my skills in front-end web development. It's built
 - **JavaScript**: All of the website's interactivity is powered by JavaScript. This includes form validation, navigation, and more.
 
 ![Cover Image](formStep.jpg)
+![Cover Image](formStep2.jpg)
 
 ## Project Structure
 
