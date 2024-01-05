@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>BestCompare | thank you</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;500;700;900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="wrapper">
+				<nav class="topBar">
+					<img src="./img/bc-logo.svg.svg" alt="logoBestcompare" class="logo" />
+				</nav>
+			</div>
+
+			<div class="progress-bar">
+				<div class="progress-bar-fill"></div>
+				<div class="avatar">
+					<img src="./img/avatar.png" alt="AliceAvatar" />
+				</div>
+			</div>
+			<main class="wrapper">
+				<!-- Thank You Step -->
+				<div class="thanks" id="thankYouStep">
+					<img src="./img/greatThanks.svg" alt="thank you" />
+					<h2 id="thankYouMessage"></h2>
+					<p class="subheading bold">
+						Be sure to monitor your phone and email for your personalised life
+						insurance quotes.
+					</p>
+				</div>
+			</main>
+			<footer class="footer">
+				<div class="wrapper">
+					<nav class="topBar">
+						<img
+							src="./img/bc-logo.svg.svg"
+							alt="logoBestcompare"
+							class="logo"
+						/>
+						<a href="mailto:hello@bestcompare" class="emailLink desktop"
+							>hello@bestcompare.com</a
+						>
+						<a href="mailto:hello@bestcompare" class="emailLink mobile">
+							<img src="img/mailOrange.svg" alt="" />
+							Email Us</a
+						>
+					</nav>
+
+					<div class="footerTxt">
+						<p>
+							Please note: BestCompare are specialist lead generators who will
+							earn a fee by introducing you to an authorised FCA regulated
+							broker or insurer who can send you relevant quotes. We are not an
+							independent price comparison site, or an insurance Brokerage. We
+							do not offer financial advice.BestCompare is a trading name of
+							Amesmo Ltd. Amesmo Ltd is registered in England and Wales, Company
+							Registration No 11520871. Registered Office: 20-22 Wenlock Road
+							London N1 7GU. Head Office: The Waterfront, Salts Mill Road,
+							Shipley, BD17 7TD.
+						</p>
+						<p>
+							The brokers we work with provide a comparison service from a panel
+							of some of the UKs top insurers, such as: AIG, L&G, LV= Aviva &
+							Zurich. Not every broker works with all insurers listed here.
+							Amesmo Ltd is Authorised and Regulated by the Financial Conduct
+							Authority and is entered on the Financial Services Register under
+							number 820864. Registered with the Information Commissioners
+							Office (Registration number ZA455421).
+						</p>
+					</div>
+					<p class="copyright">©2023 BestCompare. All Rights Reserved.</p>
+				</div>
+			</footer>
+		</div>
+
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				// Retrieve the user's first name from Local Storage
+				const userName = localStorage.getItem("userName") || "there";
+
+				// Update the thank you message
+				const thankYouMessage = document.getElementById("thankYouMessage");
+				if (thankYouMessage) {
+					thankYouMessage.innerHTML = `It was great assisting you today <strong>${userName}</strong>. Our partners are now analyzing your details and matching you with some affordable life insurance options.`;
+				}
+			});
+		</script>
+	</body>
+</html>

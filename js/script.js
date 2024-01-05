@@ -1,8 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
 	populateYearDropdown();
+	populateHowLongDropdown();
+	populateHowMuchDropdown();
 	const form = document.getElementById("stepForm");
 	const steps = Array.from(document.getElementsByClassName("step"));
 	let currentStep = 0;
+
+	// Add event listeners to all radio buttons to move to the next step when clicked
+	const radioButtons = document.querySelectorAll('input[type="radio"]');
+	radioButtons.forEach((radio) => {
+		radio.addEventListener("click", function () {
+			if (this.checked) {
+				nextStep();
+			}
+		});
+	});
 
 	// Event listener for input fields Validation
 
@@ -21,14 +33,15 @@ document.addEventListener("DOMContentLoaded", function () {
 			// Validation logic for select dropdowns
 
 			isValid = input.value !== ""; // Check if a non-placeholder value is selected
-			errorDiv = input.nextElementSibling; // Assumes error div immediately follows the select
+			errorDiv = input.nextElementSibling;
 		} else {
 			// Validation logic for regular inputs
 			isValid = input.checkValidity();
-			errorDiv = input.nextElementSibling; // Assumes error div immediately follows the input
+			errorDiv = input.nextElementSibling;
 		}
 
 		// Handling the display of error messages
+
 		if (!isValid) {
 			input.classList.add("input-error");
 			input.classList.remove("input-valid");
@@ -43,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		return isValid;
 	}
 
-	// Event listener for input fields
+	// Event listener for input fields Validation
 
 	function showStep(step) {
 		steps.forEach((s, index) => {
@@ -69,7 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		updateProgressBar();
 	}
 
-
 	// Window next step function
 
 	window.nextStep = async function () {
@@ -85,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 
 		// If all inputs are valid, proceed to the next step
+
 		if (allValid) {
 			await animateToNextStep();
 
@@ -98,10 +111,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	function animateToNextStep() {
 		return new Promise((resolve) => {
 			const currentStepElement = steps[currentStep];
-			currentStepElement.classList.add("slide-out");
+			currentStepElement.classList.add("slide-out-left-to-right");
 
 			setTimeout(() => {
-				currentStepElement.classList.remove("slide-out");
+				currentStepElement.classList.remove("slide-out-left-to-right");
 				currentStep = Math.min(currentStep + 1, steps.length - 1);
 				showStep(currentStep);
 				resolve();
@@ -109,11 +122,24 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 
-	// Window previous step function
-
 	window.previousStep = function () {
-		currentStep = Math.max(currentStep - 1, 0);
-		showStep(currentStep);
+		if (currentStep > 0) {
+			const currentStepElement = steps[currentStep];
+			currentStepElement.classList.add("slide-out");
+
+			setTimeout(() => {
+				currentStepElement.classList.remove("slide-out");
+				currentStep = Math.max(currentStep - 1, 0);
+				showStep(currentStep);
+
+				const newStepElement = steps[currentStep];
+				newStepElement.classList.add("slide-in-right-to-left");
+
+				setTimeout(() => {
+					newStepElement.classList.remove("slide-in-right-to-left");
+				}, 500);
+			}, 500);
+		}
 	};
 
 	// Progress Bar Function
@@ -124,29 +150,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		const totalSteps = steps.length; // Total number of steps without including the thank you step
 		let percentage = (currentStep / (totalSteps - 1)) * 100;
 		progressBarFill.style.width = percentage + "%";
-	}
-
-	// Thank You Step Function
-
-	function showThankYouStep() {
-		// Hide all steps
-		steps.forEach((step) => {
-			step.classList.add("hidden");
-		});
-		// Explicitly set the progress bar to 100%
-		const progressBarFill = document.querySelector(".progress-bar-fill");
-		progressBarFill.style.width = "100%";
-
-		// Show the thank you message
-		const thankYouStep = document.getElementById("thankYouStep");
-		const thankYouMessage = document.getElementById("thankYouMessage");
-
-		if (thankYouStep && thankYouMessage) {
-			thankYouStep.classList.remove("hidden");
-			thankYouMessage.innerHTML = `It was great assisting you today <strong>${form.firstName.value}</strong>. Our partners are now analysing your details and matching you with some affordable life insurance options.`;
-		} else {
-			console.error("Thank You Step or Message elements not found.");
-		}
 	}
 
 	// Form Submit Function
@@ -192,11 +195,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		console.log("Form Data:", formData);
 		// Send data to the backend here
 
-		// Show the thank you step
-		showThankYouStep();
+		// Store the user's first name in Local Storage
+		localStorage.setItem("userName", formData.firstName);
+
+		// Redirect to the thank you page after processing the form data
+		window.location.href = "/thankyou.html";
 	});
 });
-
 // Year Function
 
 function populateYearDropdown() {
@@ -208,5 +213,50 @@ function populateYearDropdown() {
 		option.value = year;
 		option.textContent = year;
 		yearDropdown.appendChild(option);
+	}
+}
+// How Much value dropdown
+
+function populateHowMuchDropdown() {
+	const howMuchDropdown = document.getElementById("howmuch");
+	const amounts = [
+		30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 150000, 200000,
+		250000, 300000, 350000, 400000, 450000, 500000, 550000, 600000, 650000,
+		700000, 750000, 800000, 850000, 900000, 950000, 1000000,
+	];
+
+	amounts.forEach((amount) => {
+		let option = document.createElement("option");
+		option.value = amount;
+		if (amount === 1000000) {
+			option.textContent = "£1million+";
+		} else {
+			option.textContent = `£${amount.toLocaleString()}`;
+		}
+
+		if (amount === 150000) {
+			option.selected = true;
+		}
+
+		howMuchDropdown.appendChild(option);
+	});
+}
+
+// How Long value dropdown
+function populateHowLongDropdown() {
+	const howLongDropdown = document.getElementById("howlong");
+
+	// Start from 5 years and end at 72 years
+	for (let year = 5; year <= 72; year++) {
+		let option = document.createElement("option");
+		option.value = year;
+		option.textContent = `${year} years`;
+
+		// Set default value to 20 years
+		if (year === 20) {
+			option.selected = true;
+		}
+
+		howLongDropdown.appendChild(option);
 	}
 }

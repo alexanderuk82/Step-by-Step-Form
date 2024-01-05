@@ -15,7 +15,7 @@
 	--heading-1: 4rem;
 	--heading-2: 3.06rem;
 	--heading-3: 2.5rem;
-	--heading-4: 1.25rem;
+	--heading-4: 1.1rem;
 	--body-font: 1rem;
 
 	/* Font family */
@@ -52,7 +52,7 @@ h1 {
 }
 
 h2 {
-	font-size: clamp(1.875rem, 3vw + 1rem, var(--heading-2));
+	font-size: clamp(1.775rem, 2vw + 1rem, var(--heading-2));
 	font-weight: var(--font-weight-light);
 	line-height: var(--line-height-normal);
 	text-align: center;
@@ -76,6 +76,15 @@ body {
 	font-weight: var(--font-weight-regular);
 	line-height: var(--line-height-normal);
 	color: var(--black);
+}
+
+.subheading {
+	font-size: clamp(1.25rem, 1.5vw + 1rem, var(--heading-4));
+	font-weight: var(--font-weight-light);
+	line-height: var(--line-height-normal);
+}
+.bold {
+	font-weight: var(--font-weight-semibold);
 }
 
 /* ================================================== */
@@ -198,7 +207,7 @@ strong {
 
 .options {
 	/* mobile landscape styles */
-	@media (min-width: 30rem) {
+	@media (min-width: 36rem) {
 		display: flex;
 		justify-content: center;
 		width: 100%;
@@ -206,14 +215,31 @@ strong {
 	}
 }
 
+.gap {
+	gap: 1.5rem;
+}
+
+.flex {
+	display: flex;
+	flex-direction: row !important;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.flex > .option:not(:last-child) {
+	margin-right: 1.8rem;
+}
+
 .option {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 1.5rem;
+
 	/* Tablet styles */
-	@media (min-width: 30px) {
+	/* @media (min-width: 30px) {
 		margin-right: 1.5rem;
-	}
+	} */
 }
 
 .option > label {
@@ -229,6 +255,20 @@ strong {
 	border-radius: 0.1875rem;
 	border: 1px solid var(--borderColor);
 	font-size: inherit;
+}
+
+.option > select {
+	padding: 1rem 2rem;
+	border-radius: 0.1875rem;
+	border: 1px solid var(--borderColor);
+	font-size: inherit;
+	-webkit-appearance: none; /* Key for iOS and Safari */
+	-moz-appearance: none; /* Key for Firefox */
+	appearance: none;
+	background: url("../img/arrowDown.svg") no-repeat right;
+	background-size: 1rem;
+	cursor: pointer;
+	background-position: right 1rem center;
 }
 
 .option > .input:focus {
@@ -399,6 +439,12 @@ strong {
     EXTRAS CLASSESS
 =====================*/
 
+.spacesSvg {
+	width: 67px;
+	height: 67px;
+	padding: 0.5rem;
+}
+
 .dob {
 	margin-left: 1rem;
 }
@@ -490,17 +536,45 @@ strong {
 
 /* Keyframes animation */
 
-@keyframes slideOut {
+@keyframes slide-in-right-to-left {
 	from {
-		transform: translateX(0);
-		opacity: 1;
-	}
-	to {
 		transform: translateX(-100%);
 		opacity: 0;
 	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }
 
-.slide-out {
-	animation: slideOut 500ms ease-in;
+.slide-in-right-to-left {
+	animation-name: slide-in-right-to-left;
+	animation-duration: 0.5s; /* Adjust the duration as needed */
+	animation-fill-mode: both;
+}
+
+@keyframes slide-out-left-to-right {
+	100% {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+	90% {
+		transform: translateX(-80%);
+		opacity: 0.8;
+	}
+	70% {
+		transform: translateX(-90%);
+		opacity: 0.9;
+	}
+	0% {
+		transform: translateX(0%);
+		opacity: 1;
+	}
+}
+
+.slide-out-left-to-right {
+	animation-name: slide-out-left-to-right;
+	animation-duration: 2s; /* Adjust the duration as needed */
+	animation-timing-function: ease;
+	animation-fill-mode: forwards;
 }

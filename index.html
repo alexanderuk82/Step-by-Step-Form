@@ -14,28 +14,14 @@
 		<div class="container">
 			<div class="wrapper">
 				<nav class="topBar">
-					<a href="https://www.bestcompare.com/">
-						<img
-							src="/img/bc-logo.svg.svg"
-							alt="logoBestcompare"
-							class="logo"
-						/>
-					</a>
-
-					<a href="mailto:hello@bestcompare" class="emailLink desktop"
-						>hello@bestcompare.com</a
-					>
-					<a href="mailto:hello@bestcompare" class="emailLink mobile">
-						<img src="img/mailOrange.svg" alt="" />
-						Email Us
-					</a>
+					<img src="./img/bc-logo.svg.svg" alt="logoBestcompare" class="logo" />
 				</nav>
 			</div>
 
 			<div class="progress-bar">
 				<div class="progress-bar-fill"></div>
 				<div class="avatar">
-					<img src="/img/avatar.png" alt="AliceAvatar" />
+					<img src="./img/avatar.png" alt="AliceAvatar" />
 				</div>
 			</div>
 			<main class="wrapper">
@@ -47,7 +33,7 @@
 							minutes. <strong>Let's get started.</strong>
 						</h2>
 						<div class="content">
-							<div class="options">
+							<div class="options gap">
 								<div class="option">
 									<label for="firstName">First Name:</label>
 									<input
@@ -62,7 +48,7 @@
 									<div class="error-message" id="firstNameError"></div>
 								</div>
 								<div class="option">
-									<label for="surname">Surname:</label>
+									<label for="surname">Last Name:</label>
 									<input
 										class="input"
 										type="text"
@@ -132,7 +118,7 @@
 					<div class="step hidden" id="step3">
 						<h2>Are you male or female?</h2>
 						<div class="content">
-							<div class="options">
+							<div class="options flex">
 								<div class="option radio">
 									<input
 										type="radio"
@@ -230,7 +216,7 @@
 					<div class="step hidden" id="4">
 						<h2>Thanks! Are you interested in insuring your own life?</h2>
 						<div class="content">
-							<div class="options">
+							<div class="options flex">
 								<div class="option radio">
 									<input
 										type="radio"
@@ -328,39 +314,13 @@
 					<div class="step hidden" id="step5">
 						<h2>What's your date of birth?</h2>
 						<div class="content">
-							<p>Select your date of birth below</p>
-							<div class="options dob">
-								<div class="option">
-									<label for="dobMonth"></label>
-									<select
-										id="dobMonth"
-										name="dobMonth"
-										required
-										data-error-message="Please select a month."
-										class="input"
-									>
-										<!-- Month options -->
-										<option value="" disabled selected>Month</option>
-										<option value="1">January</option>
-										<option value="2">February</option>
-										<option value="3">March</option>
-										<option value="4">April</option>
-										<option value="5">May</option>
-										<option value="6">June</option>
-										<option value="7">July</option>
-										<option value="8">August</option>
-										<option value="9">September</option>
-										<option value="10">October</option>
-										<option value="11">November</option>
-										<option value="12">December</option>
-									</select>
-
-									<div class="error-message" id="dobMonthError"></div>
-								</div>
+							<p class="subheading">Select your date of birth below</p>
+							<div class="options dob gap">
+								<!-- day dropdown -->
 								<div class="option">
 									<label for="dobDay"></label>
 									<select
-										class="input"
+										class="select"
 										id="dobDay"
 										name="dobDay"
 										required
@@ -404,6 +364,36 @@
 									<div class="error-message" id="dobDayError"></div>
 								</div>
 
+								<!-- Month dropdown -->
+
+								<div class="option">
+									<label for="dobMonth"></label>
+									<select
+										id="dobMonth"
+										name="dobMonth"
+										required
+										data-error-message="Please select a month."
+										class="input"
+									>
+										<!-- Month options -->
+										<option value="" disabled selected>Month</option>
+										<option value="1">January</option>
+										<option value="2">February</option>
+										<option value="3">March</option>
+										<option value="4">April</option>
+										<option value="5">May</option>
+										<option value="6">June</option>
+										<option value="7">July</option>
+										<option value="8">August</option>
+										<option value="9">September</option>
+										<option value="10">October</option>
+										<option value="11">November</option>
+										<option value="12">December</option>
+									</select>
+
+									<div class="error-message" id="dobMonthError"></div>
+								</div>
+
 								<!-- Year Dropdown -->
 								<div class="option">
 									<label for="dobYear"></label>
@@ -435,7 +425,7 @@
 					<div class="step hidden" id="step6">
 						<h2>Are you smoker?</h2>
 						<div class="content">
-							<div class="options">
+							<div class="options flex">
 								<div class="option radio">
 									<input
 										type="radio"
@@ -529,7 +519,7 @@
 							We're almost done. Just a couple of questions about your policy.
 						</h2>
 						<div class="content">
-							<div class="options policy">
+							<div class="options policy gap">
 								<div class="option">
 									<label for="howmuch"
 										>How much do you want to be insured for?</label
@@ -542,9 +532,6 @@
 										class="input"
 									>
 										<!-- Value how much options -->
-										<option value="150000">£150,000</option>
-										<option value="20000">£20000</option>
-										<option value="30000">£30000</option>
 									</select>
 
 									<div class="error-message" id="dobMonthError"></div>
@@ -554,7 +541,7 @@
 
 								<div class="option">
 									<label for="howlong"
-										>How much do you want to be insured for?</label
+										>How long do you want to be insured for?</label
 									>
 									<select
 										id="howlong"
@@ -564,9 +551,6 @@
 										class="input"
 									>
 										<!-- Value howlong insured -->
-										<option value="20">20 years</option>
-										<option value="30">30 years</option>
-										<option value="40">40 years</option>
 									</select>
 
 									<div class="error-message" id="dobMonthError"></div>
@@ -591,7 +575,7 @@
 						</p>
 
 						<div class="content">
-							<div class="options">
+							<div class="options flex">
 								<div class="option radio">
 									<input
 										type="radio"
@@ -633,8 +617,7 @@
 									/>
 									<label for="no" class="labelRadio">
 										<svg
-											width="48"
-											height="48"
+											class="spacesSvg"
 											viewBox="0 0 48 48"
 											fill="none"
 											xmlns="http://www.w3.org/2000/svg"
@@ -678,11 +661,11 @@
 						</h2>
 
 						<p class="subheading">
-							We need them to get you a personalised quote.
+							We need them to get you a personalized quote.
 						</p>
 
 						<div class="content">
-							<div class="options">
+							<div class="options gap">
 								<div class="option" id="phone">
 									<label for="phone">phone number</label>
 									<input
@@ -725,12 +708,12 @@
 							</div>
 
 							<div class="secure">
-								<img src="/img/lock.svg" alt="secure" />
+								<img src="./img/lock.svg" alt="secure" />
 								<p>Safe secure privacy protected</p>
 							</div>
 
 							<p id="policy">
-								By clicking "Compare Quotes Now" you agree to the
+								By clicking "Gey your quote" you agree to the
 								<a href="#">Privacy Policy</a>
 								and
 								<a href="#">Terms & Conditions</a>
@@ -742,23 +725,13 @@
 							</p>
 						</div>
 					</div>
-
-					<!-- Thank You Step -->
-					<div class="step hidden thanks" id="thankYouStep">
-						<img src="/img/greatThanks.svg" alt="thank you" />
-						<h2 id="thankYouMessage"></h2>
-						<p class="subheading">
-							Be sure to monitor your phone and email for your personalised life
-							insurance quotes.
-						</p>
-					</div>
 				</form>
 			</main>
 			<footer class="footer">
 				<div class="wrapper">
 					<nav class="topBar">
 						<img
-							src="/img/bc-logo.svg.svg"
+							src="./img/bc-logo.svg.svg"
 							alt="logoBestcompare"
 							class="logo"
 						/>
